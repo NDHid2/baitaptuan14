@@ -71,3 +71,24 @@ void canBang(NutAVL*& t) {
 
     t->chieucao = max(chieuCao(t->trai), chieuCao(t->phai)) + 1;
 }
+
+void chen(int x, NutAVL*& t) {
+    if (t == NULL) {
+        t = new NutAVL(x, NULL, NULL, 0);
+    } else if (x < t->giatri) {
+        chen(x, t->trai);
+    } else if (x > t->giatri) {
+        chen(x, t->phai);
+    }
+    // Neu bang thi khong lam gi (khong chen trung)
+    canBang(t);
+}
+
+// Duyet giua (LNR) - in ra gia tri tang dan
+void duyetGiua(NutAVL* t) {
+    if (t != NULL) {
+        duyetGiua(t->trai);
+        cout << t->giatri << " ";
+        duyetGiua(t->phai);
+    }
+}
