@@ -40,3 +40,14 @@ void xoayConPhai(NutAVL*& k1) {
     k1 = k2;
 }
 
+// Xoay kep trai - phai (truong hop trai - phai)
+void xoayKepTraiPhai(NutAVL*& k3) {
+    xoayConPhai(k3->trai);
+    xoayConTrai(k3);
+}
+
+// Xoay kep phai - trai (truong hop phai - trai)
+void xoayKepPhaiTrai(NutAVL*& k1) {
+    xoayConTrai(k1->phai);
+    xoayConPhai(k1);
+}
