@@ -51,3 +51,23 @@ void xoayKepPhaiTrai(NutAVL*& k1) {
     xoayConTrai(k1->phai);
     xoayConPhai(k1);
 }
+
+void canBang(NutAVL*& t) {
+    if (t == NULL) return;
+
+    if (chieuCao(t->trai) - chieuCao(t->phai) > 1) {
+        if (chieuCao(t->trai->trai) >= chieuCao(t->trai->phai)) {
+            xoayConTrai(t);
+        } else {
+            xoayKepTraiPhai(t);
+        }
+    } else if (chieuCao(t->phai) - chieuCao(t->trai) > 1) {
+        if (chieuCao(t->phai->phai) >= chieuCao(t->phai->trai)) {
+            xoayConPhai(t);
+        } else {
+            xoayKepPhaiTrai(t);
+        }
+    }
+
+    t->chieucao = max(chieuCao(t->trai), chieuCao(t->phai)) + 1;
+}
