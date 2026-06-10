@@ -92,3 +92,23 @@ void duyetGiua(NutAVL* t) {
         duyetGiua(t->phai);
     }
 }
+
+int main() {
+    NutAVL* goc = NULL;
+
+    int arr[] = {32, 51, 27, 83, 96, 11, 45, 75, 66};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Chen lan luot cac gia tri: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+        chen(arr[i], goc);
+    }
+    cout << endl;
+
+    cout << "Duyet cay AVL theo thu tu LNR (tang dan): ";
+    duyetGiua(goc);
+    cout << endl;
+
+    return 0;
+}
