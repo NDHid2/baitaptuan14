@@ -20,4 +20,23 @@ int chieuCao(NutAVL* t) {
     return t == NULL ? -1 : t->chieucao;
 }
 
+// Xoay don phai (truong hop trai - trai)
+void xoayConTrai(NutAVL*& k2) {
+    NutAVL* k1 = k2->trai;
+    k2->trai = k1->phai;
+    k1->phai = k2;
+    k2->chieucao = max(chieuCao(k2->trai), chieuCao(k2->phai)) + 1;
+    k1->chieucao = max(chieuCao(k1->trai), k2->chieucao) + 1;
+    k2 = k1;
+}
+
+// Xoay don trai (truong hop phai - phai)
+void xoayConPhai(NutAVL*& k1) {
+    NutAVL* k2 = k1->phai;
+    k1->phai = k2->trai;
+    k2->trai = k1;
+    k1->chieucao = max(chieuCao(k1->trai), chieuCao(k1->phai)) + 1;
+    k2->chieucao = max(chieuCao(k2->phai), k1->chieucao) + 1;
+    k1 = k2;
+}
 
